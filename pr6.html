@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #eee;
+            text-align: center;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        .event {
+            background: white;
+            margin: 10px;
+            padding: 10px;
+        }
+        #dashboard {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Login Page -->
+<div id="login">
+    <h2>Admin Login</h2>
+    <input id="user" placeholder="Username"><br>
+    <input id="pass" type="password" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+</div>
+
+<!-- Dashboard -->
+<div id="dashboard">
+    <h1>Admin Dashboard</h1>
+    <h2>Manage Events</h2>
+
+    <input id="name" placeholder="Event Name"><br>
+    <input id="date" type="date"><br>
+    <input id="category" placeholder="Category"><br>
+
+    <button onclick="addEvent()">Save Event</button>
+    <button onclick="logout()">Logout</button>
+
+    <h2>Event List</h2>
+    <div id="list"></div>
+</div>
+
+<script>
+    let events = [];
+    let edit = -1;
+
+    // Login
+    function login() {
+        if (user.value == "admin" && pass.value == "1234") {
+            loginPage();
+        } else {
+            alert("Invalid Login");
+        }
+    }
+
+    function loginPage() {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        displayEvents();
+    }
+
+    // Add and Update
+
+function addEvent() {
+    let n = document.getElementById("name").value;
+    let d = document.getElementById("date").value;
+    let c = document.getElementById("category").value;
+
+    if (n == "" || d == "" || c == "") {
+        alert("Fill all fields");
+        return;
+    }
+
+    let event = {
+        name: n,
+        date: d,
+        category: c
+    };
+
+    if (edit == -1) {
+        events.push(event);
+        alert("Event Added");
+    } else {
+        events[edit] = event;
+        edit = -1;
+        alert("Event Updated");
+    }
+
+    document.getElementById("name").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("category").value = "";
+
+    displayEvents();
+}
+
+
+    // Display Events
+    function displayEvents() {
+        list.innerHTML = "";
+
+        events.forEach((e, i) => {
+            list.innerHTML += `
+                <div class="event">
+                    <h3>${e.name}</h3>
+                    <p>${e.date} - ${e.category}</p>
+                    <button onclick="editEvent(${i})">Edit</button>
+                    <button onclick="deleteEvent(${i})">Delete</button>
+                </div>`;
+        });
+    }
+
+    // Edit Event
+    function editEvent(i) {
+        name.value = events[i].name;
+        date.value = events[i].date;
+        category.value = events[i].category;
+        edit = i;
+    }
+
+    // Delete Event
+    function deleteEvent(i) {
+        events.splice(i, 1);
+        displayEvents();
+    }
+
+    // Logout
+    function logout() {
+        dashboard.style.display = "none";
+        login.style.display = "block";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body { font-family: Arial; background: lightblue; }
+        input { margin: 5px; padding: 5px; }
+        .dark { background: black; color: white; }
+    </style>
+</head>
+
+<body>
+
+<h2>Student Registration</h2>
+
+<button onclick="theme()">Change Theme</button>
+
+<form onsubmit="return validate()">
+
+    Name: <input type="text" id="name" oninput="feedback()"><br>
+    Email: <input type="text" id="email"><br>
+    Password: <input type="password" id="pass"><br>
+    Age: <input type="number" id="age"><br>
+
+    <p id="error" style="color:red"></p>
+
+    <button type="submit">Register</button>
+</form>
+
+<h3 id="msg">Welcome Student!</h3>
+
+<button onclick="update()">Update Text</button>
+<button onclick="hide()">Show/Hide</button>
+<button onclick="format()">Format Text</button>
+
+<p id="content">This is a hidden section.</p>
+<p id="text">JavaScript DOM Manipulation</p>
+
+<h3 id="timer">10</h3>
+
+<script>
+
+// Form Validation
+function validate() {
+    let n = document.getElementById("name").value;
+    let e = document.getElementById("email").value;
+    let p = document.getElementById("pass").value;
+    let a = document.getElementById("age").value;
+
+    let error = "";
+
+    if (n == "") error += "Enter name<br>";
+    if (!e.includes("@") || !e.includes("."))
+        error += "Enter valid email<br>";
+    if (p.length < 6) error += "Password must be 6 characters<br>";
+    if (a < 18 || a == "") error += "Age must be 18 or above<br>";
+
+    document.getElementById("error").innerHTML = error;
+
+    if (error == "") {
+        alert("Registration Successful!");
+    }
+
+    return false;
+}
+
+// Theme Switching
+function theme() {
+    document.body.classList.toggle("dark");
+}
+
+// Update Content
+function update() {
+    document.getElementById("msg").innerHTML = "Welcome to Registration!";
+}
+
+// Show / Hide
+function hide() {
+    let x = document.getElementById("content");
+
+    if (x.style.display == "none")
+        x.style.display = "block";
+    else
+        x.style.display = "none";
+}
+
+// Text Formatting
+function format() {
+    document.getElementById("text").style.color = "blue";
+    document.getElementById("text").style.fontWeight = "bold";
+}
+
+// Real-time Feedback
+function feedback() {
+    let n = document.getElementById("name").value;
+    document.getElementById("msg").innerHTML = "Hello " + n;
+}
+
+// Countdown Timer
+let count = 10;
+
+setInterval(function() {
+    if (count >= 0) {
+        document.getElementById("timer").innerHTML = count;
+        count--;
+    } else {
+        document.getElementById("timer").innerHTML = "Time Up!";
+    }
+}, 1000);
+
+</script>
+
+</body>
+</html>

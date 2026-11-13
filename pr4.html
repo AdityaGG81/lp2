@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Explorer</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f2f2f2;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 8px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            margin: 15px auto;
+            width: 300px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Event Explorer</h1>
+
+    Search: <input type="text" id="search">
+
+    <select id="category">
+        <option value="All">All</option>
+        <option value="Technical">Technical</option>
+        <option value="Cultural">Cultural</option>
+        <option value="Sports">Sports</option>
+    </select>
+
+    <input type="date" id="date">
+
+    <select id="sort">
+        <option value="asc">Oldest First</option>
+        <option value="desc">Newest First</option>
+    </select>
+
+    <button onclick="showEvents()">Search</button>
+
+    <div id="result"></div>
+
+    <script>
+
+        // Event array
+        let events = [
+            {name:"Hackathon", category:"Technical", date:"2026-12-10"},
+            {name:"Dance", category:"Cultural", date:"2026-11-20"},
+            {name:"Cricket", category:"Sports", date:"2026-12-05"},
+            {name:"Workshop", category:"Technical", date:"2026-11-25"}
+        ];
+
+        function showEvents() {
+
+            let s = document.getElementById("search").value.toLowerCase();
+            let c = document.getElementById("category").value;
+            let d = document.getElementById("date").value;
+            let order = document.getElementById("sort").value;
+
+            let output = "";
+            let count = 0;
+
+            // Sort events by date
+            events.sort(function(a, b) {
+                if (order == "asc")
+                    return a.date > b.date ? 1 : -1;
+                else
+                    return a.date < b.date ? 1 : -1;
+            });
+
+            // Search and filter
+            for (let i = 0; i < events.length; i++) {
+
+                if (events[i].name.toLowerCase().includes(s) &&
+                    (c == "All" || events[i].category == c) &&
+                    (d == "" || events[i].date == d)) {
+
+                    output += "<div class='card'>";
+                    output += "<h2>" + events[i].name + "</h2>";
+                    output += "<p>Category: " + events[i].category + "</p>";
+                    output += "<p>Date: " + events[i].date + "</p>";
+                    output += "</div>";
+
+                    count++;
+                }
+            }
+
+            // Display result
+            if (count == 0)
+                output = "<h3>No Results Found</h3>";
+
+            document.getElementById("result").innerHTML = output;
+        }
+
+        // Display all events initially
+        showEvents();
+
+    </script>
+
+</body>
+</html>
