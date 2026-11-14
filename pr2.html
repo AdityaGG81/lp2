@@ -1,126 +1,165 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <title>IT Department</title>
+  <head>
+    <title>College Timetable</title>
 
     <style>
-        body {
-            font-family: Arial;
-            background-color: #f2f5f9;
-            margin: 0;
-        }
+      body {
+        font-family: Arial;
+        margin: 10px;
+      }
 
-        header {
-            background-color: navy;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+      header,
+      footer {
+        background: navy;
+        color: white;
+        text-align: center;
+        padding: 15px;
+      }
 
-        nav {
-            background-color: steelblue;
-            padding: 12px;
-            text-align: center;
-        }
+      nav {
+        background: gray;
+        padding: 10px;
+      }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 15px;
-        }
+      nav a {
+        color: white;
+        margin: 10px;
+      }
 
-        main {
-            padding: 20px;
-        }
+      .container {
+        display: flex;
+        gap: 10px;
+      }
 
-        section {
-            background-color: white;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 8px;
-        }
+      main {
+        flex: 3;
+        padding: 10px;
+      }
 
-        h2 {
-            color: navy;
-        }
+      aside {
+        flex: 1;
+        background: lightgray;
+        padding: 10px;
+      }
 
-        img {
-            width: 200px;
-        }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
 
-        footer {
-            background-color: navy;
-            color: white;
-            text-align: center;
-            padding: 10px;
+      td,
+      th {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+
+      .box {
+        background: lightblue;
+        padding: 10px;
+        margin: 5px;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          flex-direction: column;
         }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <h1>Department of Information Technology</h1>
-        <p>Welcome to IT Department</p>
+      <h1>ABC Engineering College</h1>
+      <p>Department of IT</p>
     </header>
 
     <nav>
-        <a href="#about">About</a>
-        <a href="#faculty">Faculty</a>
-        <a href="#labs">Labs</a>
-        <a href="#vision">Vision</a>
-        <a href="#contact">Contact</a>
+      <a href="#time">Timetable</a>
+      <a href="#infra">Infrastructure</a>
+      <a href="#media">Media</a>
     </nav>
 
-    <main>
+    <div class="container">
+      <main>
+        <h2 id="time">Class Timetable</h2>
 
-        <section id="about">
-            <h2>Department Overview</h2>
-            <p>Our department provides quality education
-            in programming, networking and web development.</p>
-            <img src="college.jpg" alt="College Image">
-        </section>
+        <table>
+          <caption>
+            Weekly Timetable
+          </caption>
 
-        <section id="faculty">
-            <h2>Faculty</h2>
-            <ul>
-                <li>Prof. ABC</li>
-                <li>Prof. XYZ</li>
-                <li>Prof. PQR</li>
-            </ul>
-        </section>
+          <tr>
+            <th>Day</th>
+            <th>9-10</th>
+            <th>10-11</th>
+            <th>11-12</th>
+          </tr>
 
-        <section id="labs">
-            <h2>Laboratories</h2>
-            <ol>
-                <li>Programming Lab</li>
-                <li>Database Lab</li>
-                <li>Networking Lab</li>
-            </ol>
+          <tr>
+            <td>Monday</td>
+            <td>Java</td>
+            <td>DBMS</td>
+            <td rowspan="2">Lab</td>
+          </tr>
 
-            <video width="200" controls>
-                <source src="video.mp4" type="video/mp4">
-            </video>
-        </section>
+          <tr>
+            <td>Tuesday</td>
+            <td>Python</td>
+            <td>CN</td>
+          </tr>
 
-        <section id="vision">
-            <h2>Vision and Mission</h2>
-            <p><b>Vision:</b> To provide quality education.</p>
-            <p><b>Mission:</b> To develop skilled IT professionals.</p>
-        </section>
+          <tr>
+            <td>Wednesday</td>
+            <td colspan="2">Web Lab</td>
+            <td>OS</td>
+          </tr>
+        </table>
 
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Email: it@example.com</p>
-            <a href="https://www.google.com">Visit Google</a>
-        </section>
+        <h2 id="infra">Infrastructure</h2>
 
-    </main>
+        <div class="box">Computer Lab</div>
+
+        <div class="box">Library</div>
+
+        <div class="box">Wi-Fi Facility</div>
+
+        <h2>Subjects</h2>
+
+        <div class="box">Subject: <span>Java</span></div>
+
+        <div class="box">Subject: <span>Python</span></div>
+
+        <h2 id="media">Multimedia</h2>
+
+        <audio controls>
+          <source src="audio.mp3" type="audio/mpeg" />
+        </audio>
+
+        <br /><br />
+
+        <video width="200" controls>
+          <source src="video.mp4" type="video/mp4" />
+        </video>
+      </main>
+
+      <aside>
+        <h3>Quick Links</h3>
+        <p>Admissions</p>
+        <p>Examinations</p>
+        <p>Placements</p>
+
+        <h3>Vision</h3>
+        <p>Quality Education</p>
+
+        <h3>Mission</h3>
+        <p>Develop Skilled Engineers</p>
+      </aside>
+    </div>
 
     <footer>
-        <p>Copyright 2026 IT Department</p>
+      <p>Contact: abc@gmail.com</p>
     </footer>
-
-</body>
+  </body>
 </html>
